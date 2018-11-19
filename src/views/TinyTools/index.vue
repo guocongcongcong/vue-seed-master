@@ -12,6 +12,8 @@
                     <el-radio v-model="radio" label="1" border @change="getLength">身份证号</el-radio>
                     <el-radio v-model="radio" label="2" border @change="getLength">残疾证号</el-radio>
                     <el-radio v-model="radio" label="3" border @change="getLength">自定义长度</el-radio>
+                    <!-- <el-radio v-model="radio" label="4" border @change="getLength">全部大写</el-radio>
+                    <el-radio v-model="radio" label="5" border @change="getLength">全部小写</el-radio> -->
                 </el-row>
             </el-col>
         </el-row>
@@ -53,23 +55,30 @@ export default {
         .split(/\s/)
         .forEach(e => {
           e = e.split(/\s+/);
-          console.log(e);
           let temp = "";
           if (e.length > 1) {
             temp = e[1];
           } else {
             temp = e[0];
           }
-          console.log(this.radio);
-          if (this.radio == 1) {
-            temp = temp.substring(0,18);
-          } else if (this.radio == 2) {
-            temp = temp.substring(0,20);
-          } else if (this.radio == 3) {
-            console.log(temp.substring(0,this.input));
-            temp = temp.substring(0,this.input);
-          }
-          v.push("'" + temp + "'");
+          // if (this.radio == 4 || this.radio == 5) {
+          //   if(this.radio == 4){
+          //     temp = temp.toUpperCase;
+          //   }else if(this.radio == 5){
+          //     temp = temp.toLowerCase;
+          //   }
+          //   v.push(temp);
+          // } else {
+            if (this.radio == 1) {
+              temp = temp.substring(0, 18);
+            } else if (this.radio == 2) {
+              temp = temp.substring(0, 20);
+            } else if (this.radio == 3) {
+              console.log(temp.substring(0, this.input));
+              temp = temp.substring(0, this.input);
+            }
+            v.push("'" + temp + "'");
+          // }
         });
       this.textarea = v.join(",");
     },
@@ -85,11 +94,10 @@ export default {
 };
 </script>
 <style  lang="less">
- .el-row.row_t {
-    margin-bottom: 20px;
-    
-  }
-  /* .el-col {
+.el-row.row_t {
+  margin-bottom: 20px;
+}
+/* .el-col {
     border-radius: 4px;
   } */
 </style>
