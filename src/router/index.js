@@ -16,6 +16,9 @@ const About = resolve => require(['@/views/About'], resolve)
 //小工具
 const TinyTools = resolve => require(['@/views/TinyTools'],resolve)
 
+//预算
+const BillList = resolve => require(['@/views/BillList'],resolve)
+
 // 天气预报
 const Weather = resolve => require(['@/views/Weather'], resolve)
     // 立方体
@@ -74,6 +77,11 @@ const router = new Router({
                     path: 'tools',
                     meta: { requireAuth: true },
                     component: TinyTools
+                },
+                {
+                    path: 'bills',
+                    meta: { requireAuth: true },
+                    component: BillList
                 },
                 {
                     path: 'authority-test',

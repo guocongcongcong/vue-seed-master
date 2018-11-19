@@ -40,6 +40,12 @@ if (debug) {
                 router: '/tools',
                 icon: 'el-icon-document',
                 children: []
+            }, {
+                name: '预算',
+                name_en: 'BillList',
+                router: '/bills',
+                icon: 'el-icon-tickets',
+                children: []
             },{
                 name: '魔幻立方',
                 name_en: 'Cube',
