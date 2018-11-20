@@ -93,11 +93,3 @@ export default {
   }
 };
 </script>
-<style  lang="less">
-.el-row.row_t {
-  margin-bottom: 20px;
-}
-/* .el-col {
-    border-radius: 4px;
-  } */
-</style>

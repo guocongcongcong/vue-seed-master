@@ -185,12 +185,12 @@ export default {
         color: #20a0ff;
     }
   }
-  form {
-    margin-top: 25px;
-    .el-form-item {
-      margin-bottom: 15px;
-    }
-  }
+  // form {
+  //   margin-top: 25px;
+  //   .el-form-item {
+  //     margin-bottom: 15px;
+  //   }
+  // }
   a {
     text-decoration: none;
     color: #1f2d3d;
