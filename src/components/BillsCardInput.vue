@@ -44,13 +44,13 @@
                   </el-table-column>
                   <el-table-column prop="owe" label="欠款（元）" width="120" :align='tableAlign'>
                   </el-table-column>
-                  <el-table-column>
-                    <template slot="header" slot-scope="scope">
+                  <el-table-column label="操作"  :align='tableAlign'>
+                    <template slot="header" slot-scope="scope" >
                       <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
                     </template>
                     <template slot-scope="scope">
-                      <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-                      <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                      <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button> -->
+                      <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                     </template>
                   </el-table-column>
                 </el-table>
@@ -100,7 +100,7 @@ export default {
       this.formInline.name = "";
       this.formInline.total = "";
       this.formInline.rest = "";
-      //console.log(this.store.state.total);
+      console.log(this.$store.state.bill.total);//.state.total
     },
     //合计  table 上添加 show-summary
     getSummaries(param) {
@@ -126,6 +126,7 @@ export default {
           sums[index] = "N/A";
         }
       });
+      console.log(this.$store.state.bill.total);//.state.total
       return sums;
     },
     //修改删除按钮

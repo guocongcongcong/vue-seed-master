@@ -50,13 +50,13 @@
   </div>
 </template>
 <script>
-  import BillsCardInput from "comp/BillsCardInput.vue"
-  const billsInfo = new Vuex.Store({
-    strict: debug,
-    mutations: {
-      total: []
-    }
-  })
+   import BillsCardInput from "comp/BillsCardInput.vue"
+  // const billsInfo = new Vuex.Store({
+  //   strict: debug,
+  //   mutations: {
+  //     total: []
+  //   }
+  // })
   export default {
     name: "bills",
     components: {
