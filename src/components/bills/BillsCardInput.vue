@@ -45,9 +45,6 @@
                   <el-table-column prop="owe" label="欠款（元）" width="120" :align='tableAlign'>
                   </el-table-column>
                   <el-table-column label="操作"  :align='tableAlign'>
-                    <template slot="header" slot-scope="scope" >
-                      <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
-                    </template>
                     <template slot-scope="scope">
                       <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button> -->
                       <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -86,45 +83,39 @@ export default {
   methods: {
     //添加
     addInfo() {
-      let data = {
-        name: "",
-        total: "",
-        rest: "",
-        owe: ""
-      };
-      data.name = this.formInline.name;
-      data.total = this.formInline.total;
-      data.rest = this.formInline.rest;
-      data.owe = this.formInline.total - this.formInline.rest;
+      var form1 = this.formInline;
+      var data = this.tableData.slice();
+      Object.keys(data[0]).forEach(function(key){
+        if(key == 'owe'){data[key] = form1.total - form1.rest;}
+        else{data[key]= form1[key];}
+      });
+      Object.keys(form1).forEach(function(key){form1[key]= "";});
       this.tableData.push(data);
-      this.formInline.name = "";
-      this.formInline.total = "";
-      this.formInline.rest = "";
     },
     //合计  table 上添加 show-summary
     getSummaries(param) {
       const { columns, data } = param;
-      const sums = [];
-      columns.forEach((column, index) => {
-        if (index === 0) {
-          sums[index] = "合计";
-          return;
-        }
-        const values = data.map(item => Number(item[column.property]));
-        if (!values.every(value => isNaN(value))) {
-          sums[index] = values.reduce((prev, curr) => {
-            const value = Number(curr);
-            if (!isNaN(value)) {
-              return prev + curr;
-            } else {
-              return prev;
-            }
-          }, 0);
-          sums[index] += " 元";
-        } else {
-          sums[index] = "N/A";
-        }
-      });
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '合计';
+            return;
+          }
+          const values = data.map(item => Number(item[column.property]));
+          if (!values.every(value => isNaN(value))) {
+            sums[index] = values.reduce((prev, curr) => {
+              const value = Number(curr);
+              if (!isNaN(value)) {
+                return prev + curr;
+              } else {
+                return prev;
+              }
+            }, 0);
+            sums[index] += ' 元';
+          } else {
+            sums[index] = 'N/A';
+          }
+        });
       this.$store.commit('getBillInfo',sums);
       return sums;
     },
@@ -133,7 +124,6 @@ export default {
       console.log(index, row);
     },
     handleDelete(index, row) {
-      console.log(index, row);
       this.tableData.splice(index, 1);
     },
     //银行名称的列表

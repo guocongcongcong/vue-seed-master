@@ -14,16 +14,7 @@
           <bills-card-input></bills-card-input>
         </el-tab-pane>
         <el-tab-pane label="配置管理">
-          <el-card class="box-card">
-            <el-row>
-              <!-- <el-button plain>朴素按钮</el-button>
-                  <el-button type="primary" plain>主要按钮</el-button>
-                  <el-button type="success" plain>成功按钮</el-button> -->
-              <el-button type="info" plain @click="getConstInfo">信息按钮</el-button>
-              <!-- <el-button type="warning" plain>警告按钮</el-button>
-                  <el-button type="danger" plain>危险按钮</el-button> -->
-            </el-row>
-          </el-card>
+          <bills-setting></bills-setting>
         </el-tab-pane>
         <el-tab-pane label="账单明细">
           <el-row class='row_t'>
@@ -50,17 +41,13 @@
   </div>
 </template>
 <script>
-   import BillsCardInput from "comp/BillsCardInput.vue"
-  // const billsInfo = new Vuex.Store({
-  //   strict: debug,
-  //   mutations: {
-  //     total: []
-  //   }
-  // })
+   import BillsCardInput from "comp/bills/BillsCardInput.vue"
+   import BillsSetting from "comp/bills/BillsSetting.vue"
   export default {
     name: "bills",
     components: {
-      "bills-card-input": BillsCardInput
+      "bills-card-input": BillsCardInput,
+      "bills-setting":BillsSetting,
     },
     data() {
       return {
@@ -75,9 +62,6 @@
       };
     },
     methods: {
-      getConstInfo() {
-        console.log(columns);
-      }
     }
   };
 
