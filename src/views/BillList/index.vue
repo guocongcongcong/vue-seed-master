@@ -10,11 +10,11 @@
         </el-radio-group>
       </el-row> -->
       <el-tabs :tab-position="tabPosition" style="height: auto;">
-        <el-tab-pane label="银行卡管理">
-          <bills-card-input></bills-card-input>
-        </el-tab-pane>
         <el-tab-pane label="配置管理">
           <bills-setting></bills-setting>
+        </el-tab-pane>
+        <el-tab-pane label="银行卡管理">
+          <bills-card-input></bills-card-input>
         </el-tab-pane>
         <el-tab-pane label="账单明细">
           <el-row class='row_t'>

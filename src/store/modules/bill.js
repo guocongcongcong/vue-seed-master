@@ -7,13 +7,13 @@ const bill = {
         owe: ""
       },
       settings:{
-            startDate: "",
-            endDate: "",
+            startDate:"",
+            endDate:"",
             enterDate:"",
             singleMoney:"",
             rate:"",
             billsLength:"",
-            expenditure:""
+            expenditure:[]
       }
     },
     mutations: {

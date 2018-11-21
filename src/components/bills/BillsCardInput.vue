@@ -83,13 +83,13 @@ export default {
   methods: {
     //添加
     addInfo() {
-      var form1 = this.formInline;
-      var data = this.tableData.slice();
+      let that = this;
+      let data = this.tableData.slice();
       Object.keys(data[0]).forEach(function(key){
-        if(key == 'owe'){data[key] = form1.total - form1.rest;}
-        else{data[key]= form1[key];}
+        if(key == 'owe'){data[key] = that.formInline.total - that.formInline.rest;}
+        else{data[key]= that.formInline[key];}
       });
-      Object.keys(form1).forEach(function(key){form1[key]= "";});
+      Object.keys(that.formInline).forEach(function(key){that.formInline[key]= "";});
       this.tableData.push(data);
     },
     //合计  table 上添加 show-summary
