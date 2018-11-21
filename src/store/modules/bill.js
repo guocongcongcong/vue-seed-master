@@ -1,16 +1,19 @@
 const bill = {
     state: {
-       total:[{
-        name: "支付宝借呗",
-        total: "39500",
-        rest: "27500",
-        owe: "12000"
+       info:[{
+        name: "",
+        total: "",
+        rest: "",
+        owe: ""
       }]
     },
     mutations: {
-        getTotals(state) {
-            state.total = !state.total
-        }
+        getBillInfo(info,sums) {
+            info.name = sums[0];
+            info.total = sums[1];
+            info.rest = sums[2];
+            info.owe = sums[3];
+          },
     }
 }
 

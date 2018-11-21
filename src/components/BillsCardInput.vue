@@ -100,7 +100,6 @@ export default {
       this.formInline.name = "";
       this.formInline.total = "";
       this.formInline.rest = "";
-      console.log(this.$store.state.bill.total);//.state.total
     },
     //合计  table 上添加 show-summary
     getSummaries(param) {
@@ -126,7 +125,7 @@ export default {
           sums[index] = "N/A";
         }
       });
-      console.log(this.$store.state.bill.total);//.state.total
+      this.$store.commit('getBillInfo',sums);
       return sums;
     },
     //修改删除按钮
