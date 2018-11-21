@@ -7,14 +7,23 @@ const bill = {
         owe: ""
       },
       settings:{
-            startDate:"",
-            endDate:"",
-            enterDate:"",
-            singleMoney:"",
-            rate:"",
-            billsLength:"",
-            expenditure:[]
-      }
+        startDate:"",
+        endDate:"",
+        enterDate:"",
+        singleMoney:"",
+        rate:"",
+        billsLength:"",
+        expenditure:[]
+      },
+    //   tableData: [
+    //     {
+    //       date: "",
+    //       total: "",
+    //       expenditure: "",
+    //       accumulation: "",
+    //       repayment: ""
+    //     }
+    //   ],
     },
     mutations: {
         getBillInfo(state,sums) {
@@ -25,7 +34,10 @@ const bill = {
           },
         getSettings(state,info){
             state.settings = info;
-        }
+        },
+        // uploadDate(state,tableData){
+        //     state.tableData = tableData;
+        // }
     }
 }
 
