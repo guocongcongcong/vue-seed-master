@@ -14,6 +14,8 @@ import 'font-awesome/less/font-awesome.less'
 import 'directives/customTitle.js'
 // 在入口处引入模拟的假数据
 import '@/mock'
+//glw添加的公共js
+import common from './common/common.js'
 
 // 这里只引入了部分饿了么组件
 import {
@@ -151,6 +153,8 @@ import {
   Vue.use(Footer);
 
 
+
+
 Vue.use(Loading.directive)
 
 Vue.prototype.$loading = Loading.service
@@ -160,6 +164,9 @@ Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$message = Message
 Vue.prototype.$axios = axios
 Vue.use(VueParticles)
+
+//加载公共函数
+Vue.prototype.$common = common
 
 // Vue 的全局配置
 Vue.config.productionTip = false

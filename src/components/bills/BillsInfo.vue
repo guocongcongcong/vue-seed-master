@@ -41,23 +41,80 @@ export default {
     };
   },
   methods:{
-      getNewPlan(){
-        // let settings = this.$store.state.bill.settings;
-        // let info = this.$store.state.bill.info;
-        let info = arr[0];
-        let tableData= this.tableData[0];
-        let startDate = new Date(info.startDate);
-        // .parse(info.startDate);
-        var today = new Date();
-        // console.log(startDate.getFullYear());
-        // console.log(startDate.getMonth());
-        // console.log(startDate.getDate());
-        // console.log(startDate.getDay());
-
-
-
-        
-        this.tableData.push(tableData);
+    getNewPlan(){
+        this.tableData.length=0;
+        let settings = this.$store.state.bill.settings;
+        let info = this.$store.state.bill.info;
+        // let tableData= this.tableDate;
+        // let settings = arr[0];
+        let owe = info.owe;
+        let i = 0;
+        let enterList = [];
+        for(let k=0 ;k<4;k++ ){
+          let enterMonth = this.getDate(new Date(settings.enterDate),k*3);
+          enterList.push(enterMonth);
+        }
+        while (parseInt(owe) > 0) {
+          let tableRow = {
+            date: "0",
+            total: "0",
+            expenditure: "0",
+            accumulation: "0",
+            repayment: "0"
+          }
+          //getDate得到最新日期
+          let startMonth = this.getDate(new Date(settings.startDate),i);
+          let nextMonth = this.getDate(new Date(settings.startDate),i+1);
+          //正常还款
+          tableRow.date = this.getDateStr(startMonth);
+          tableRow.total = owe;
+          tableRow.repayment=settings.singleMoney;
+          //公积金
+          for(let key in enterList){
+            if(this.getMidDate(startMonth,nextMonth,enterList[key])){
+              tableRow.date=tableRow.date+"("+this.getDateStr(enterList[key])+")";
+              tableRow.accumulation=4500;
+              owe = owe-4500;
+            }
+          }
+          owe = owe-settings.singleMoney;
+          this.tableData.push(tableRow);
+          i++;
+        }
+      },
+      getDate:function(date,i){
+        let dateObj = {
+          year:date.getFullYear(),
+          month:date.getMonth()+1+i,
+          day:date.getDate()
+        }
+        if(dateObj.month > 12){
+          dateObj.year = parseInt(dateObj.year + (dateObj.month/12));
+          dateObj.month = dateObj.month-12;
+        }
+        return new Date(dateObj.year+"-"+dateObj.month+"-"+dateObj.day);
+      },
+      getDateStr:function(date){
+        let dateObj = {
+          year:date.getFullYear(),
+          month:date.getMonth()+1,
+          day:date.getDate()
+        }
+        return dateObj.year+"-"+dateObj.month+"-"+dateObj.day;
+      },
+      //列表补全
+      getBeatyRow:function(tableRow){
+        Object.keys(tableRow).forEach(function(key){tableRow[key]= "0";});
+        return tableRow;
+      },
+      //日期中间值
+      getMidDate:function(oDate1,oDate2,oDate3){
+          //oDate2 = new Date();
+          if(oDate1.getTime() <= oDate3.getTime() && oDate2.getTime() >= oDate3.getTime()){
+              return true;
+          } else {
+             return false;
+          }
       }
   }
 };
@@ -65,7 +122,6 @@ export default {
 <style lang="less" scoped>
 .el-row {
   margin-bottom: 20px;
-
   &:last-child {
     margin-bottom: 0;
   }
