@@ -71,10 +71,22 @@ export default {
       },
       tableData: [
         {
-          name: "支付宝借呗",
+          name: "借呗",
           total: "39500",
           rest: "27500",
           owe: "12000"
+        },
+        {
+          name: "北京",
+          total: "37000",
+          rest: "27000",
+          owe: "10000"
+        },
+        {
+          name: "广发",
+          total: "59000",
+          rest: "41175",
+          owe: "17825"
         }
       ],
       tableAlign: "center"
@@ -116,6 +128,7 @@ export default {
             sums[index] = 'N/A';
           }
         });
+        console.log(sums);
       this.$store.commit('getBillInfo',sums);
       return sums;
     },
