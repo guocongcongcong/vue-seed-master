@@ -138,7 +138,7 @@
           singleMoney: "",
           rateSwitch: false,
           rate: "",
-          lengthSwitch: true,
+          lengthSwitch: false,
           billsLength: ""
         },
         settingForm: {

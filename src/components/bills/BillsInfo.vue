@@ -39,9 +39,9 @@ export default {
       ]
     };
   },
-  props:{
-    tableData
-  },
+  // props:{
+  //   tableData
+  // },
   methods: {
     getNewPlan() {
       this.tableData.length = 0;
