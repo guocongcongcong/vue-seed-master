@@ -69,7 +69,7 @@ module.exports = {
                     limit: 10000,
                     name: utils.assetsPath('media/[name].[ext]')
                 }
-            }
+            },
         ]
     }
 }

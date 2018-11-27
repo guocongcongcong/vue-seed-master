@@ -12,7 +12,8 @@ if (debug) {
     })
     Mock.mock(/getMenu/, {
         "data": {
-            menu: [{
+            menu: [
+                {
                 name: '项目管理',
                 name_en: 'Projects',
                 router: '',
@@ -22,13 +23,16 @@ if (debug) {
                     name_en: 'Notes',
                     router: '/project-info',
                     icon: 'el-icon-date'
-                }, {
-                    name: '关于作者',
+                },
+            {
+                    name: '关于模块',
                     name_en: 'About',
                     router: '/enroll-list',
                     icon: 'el-icon-document'
-                }]
-            }, {
+                }
+        ]
+             }, 
+            {
                 name: '天气预报',
                 name_en: 'Weather',
                 router: '/weather',
@@ -47,6 +51,13 @@ if (debug) {
                 icon: 'el-icon-tickets',
                 children: []
             },{
+                name: 'MarkDown',
+                name_en: 'MarkDown',
+            router: '/markdown',
+                icon: 'el-icon-tickets',
+                children: []
+            },
+            {
                 name: '魔幻立方',
                 name_en: 'Cube',
                 router: '/cube',

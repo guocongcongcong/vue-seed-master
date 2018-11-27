@@ -10,7 +10,7 @@ const Layout = resolve => require(['@/views/Layout'], resolve)
 // 项目信息
 const ProjectInfo = resolve => require(['@/views/ProjectInfo'], resolve)
 
-// 关于作者
+// 关于模块
 const About = resolve => require(['@/views/About'], resolve)
 
 //小工具
@@ -18,6 +18,9 @@ const TinyTools = resolve => require(['@/views/TinyTools'],resolve)
 
 //预算
 const BillList = resolve => require(['@/views/BillList'],resolve)
+
+//MarkDown
+const MarkDown = resolev => require(['@/views/MarkDown'],resolev)
 
 // 天气预报
 const Weather = resolve => require(['@/views/Weather'], resolve)
@@ -53,7 +56,8 @@ const router = new Router({
             component: Layout,
             // redirect: '/project-info', // 重定向到第一个子路由，否则只渲染Layout组件，这块儿使用时解除注释
             redirect: '/signin', // 这里重定向到登录页面，是为了展示使用，实际用这个项目开发时，需要注释这行，解除上一行的注释
-            children: [{
+            children: [
+                {
                     path: 'project-info',
                     meta: { requireAuth: true },
                     component: ProjectInfo
@@ -84,6 +88,11 @@ const router = new Router({
                     component: BillList
                 },
                 {
+                    path: 'markdown',
+                    meta: { requireAuth: true },
+                    component: MarkDown
+                },
+                {
                     path: 'authority-test',
                     meta: { requireAuth: true },
                     component: AuthorityTest
@@ -103,7 +112,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
     // 如果已经登录，并且要去登录页，就不让TA去登录页，重定向到首页
     if (to.path === '/signin' && localStorage.token) {
-        next('/project-info')
+        next('/weather')
     } else {
         next()
     }
