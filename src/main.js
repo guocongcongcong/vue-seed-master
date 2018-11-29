@@ -6,7 +6,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import store from './store'
-import VueParticles from 'vue-particles'
+import VueParticles from 'vue-particles'//粒子动态
 import i18n from './lang' // Internationalization
 import * as utils from '@/utils'
 import 'font-awesome/less/font-awesome.less'
